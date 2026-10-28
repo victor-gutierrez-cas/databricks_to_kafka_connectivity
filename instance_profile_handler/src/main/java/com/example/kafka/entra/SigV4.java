@@ -1,4 +1,4 @@
-package com.danskebank.kafka;
+package com.example.kafka.entra;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

@@ -1,4 +1,4 @@
-package com.danskebank.kafka;
+package com.example.kafka.entra;
 
 // DATABRICKS-SHADED Kafka interfaces. A custom SASL callback handler MUST implement the
 // shaded interface (not vanilla org.apache.kafka.*), or the shaded client rejects it.

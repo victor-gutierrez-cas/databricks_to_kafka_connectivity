@@ -10,7 +10,7 @@ Driver (notebook)
   -> Entra ID client_credentials + client_assertion -> Entra access token
   -> passed inline in kafka.sasl.jaas.config (token.value)
 Executors (Spark Kafka source)
-  com.danskebank.kafka.relay.FileTokenOAuthBearerCallbackHandler
+  com.example.kafka.entra.relay.FileTokenOAuthBearerCallbackHandler
   -> hands the token to Kafka with logicalCluster (+ identityPoolId)
   -> Confluent validates the Entra token, identity pool, RBAC
 ```
@@ -31,7 +31,7 @@ building in your pipeline or in the workspace, installing). In short:
 
 ```bash
 ./build.sh /path/to/kafkashaded.jar
-# -> build/confluent-entra-handler-service-credential.jar (only com.danskebank.kafka.relay classes)
+# -> build/confluent-entra-handler-service-credential.jar (only com.example.kafka.entra.relay classes)
 ```
 
 Upload the JAR to a UC volume, install it as a library on a dedicated cluster and restart the cluster.

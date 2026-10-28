@@ -55,7 +55,7 @@ building in your pipeline or in the workspace, installing). In short:
 
 ```bash
 ./build.sh /path/to/kafkashaded.jar
-# -> build/confluent-entra-handler-instance-profile.jar (only com.danskebank.kafka classes)
+# -> build/confluent-entra-handler-instance-profile.jar (only com.example.kafka.entra classes)
 ```
 
 Upload the JAR to a UC volume, install it as a library on a dedicated cluster and restart the cluster.
@@ -70,7 +70,7 @@ opts = {
     "kafka.bootstrap.servers": "pkc-xxxxx.eu-central-1.aws.confluent.cloud:9092",
     "kafka.security.protocol": "SASL_SSL",
     "kafka.sasl.mechanism": "OAUTHBEARER",
-    "kafka.sasl.login.callback.handler.class": "com.danskebank.kafka.AwsFederatedEntraOAuthBearerCallbackHandler",
+    "kafka.sasl.login.callback.handler.class": "com.example.kafka.entra.AwsFederatedEntraOAuthBearerCallbackHandler",
     "kafka.sasl.jaas.config": jaas,
 }
 ```
@@ -99,7 +99,7 @@ opts = {
 
 | Path | What |
 |---|---|
-| `src/main/java/com/danskebank/kafka/AwsFederatedEntraOAuthBearerCallbackHandler.java` | Handler (Kafka callbacks, options, SASL extensions) |
+| `src/main/java/com/example/kafka/entra/AwsFederatedEntraOAuthBearerCallbackHandler.java` | Handler (Kafka callbacks, options, SASL extensions) |
 | `.../AwsCredentialsProvider.java`, `AwsCredentials.java` | Env vars or IMDSv2 instance profile credentials |
 | `.../SigV4.java` | JDK only AWS Signature V4 for the STS form POST |
 | `.../StsWebIdentityTokenClient.java` | STS `GetWebIdentityToken` call and error mapping |
@@ -122,4 +122,4 @@ opts = {
 
 * Dedicated classic only; not serverless (no instance profile there, and custom handlers are blocked). The upcoming custom JAR auth on UC Kafka connections might lift the handler restriction, but where AWS credentials would come from on serverless is unknown.
 * Each executor's Kafka client logs in independently (STS + Entra call per login). Fine for normal executor counts; consider this for very large clusters and Entra throttling.
-* Not yet validated: Entra accepting AWS STS tokens in practice, Danske Conditional Access for workload identities, behaviour on the exact DBR Danske runs.
+* Validate in your environment: Conditional Access policies for workload identities, and the Databricks Runtime version you run (rebuild the JAR for each version).

@@ -1,4 +1,4 @@
-package com.danskebank.kafka;
+package com.example.kafka.entra;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;

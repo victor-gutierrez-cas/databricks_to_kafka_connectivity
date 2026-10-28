@@ -3,7 +3,7 @@
 # Needs the Databricks shaded Kafka JAR from a cluster on your target runtime (copy it from /databricks/jars to a UC
 # volume and download it, or build inside the workspace). Full steps: "Build and deploy" in the top level README.md.
 # Usage: ./build.sh /path/to/<databricks-shaded-kafka-clients>.jar
-# Only com.danskebank.kafka classes are packaged; the kafkashaded.* classes come from the runtime.
+# Only com.example.kafka.entra classes are packaged; the kafkashaded.* classes come from the runtime.
 set -euo pipefail
 cd "$(dirname "$0")"
 KAFKA_JAR="${1:?usage: ./build.sh /path/to/databricks-shaded-kafka.jar}"

@@ -1,4 +1,4 @@
-package com.danskebank.kafka;
+package com.example.kafka.entra;
 
 /** Temporary AWS credentials. toString never prints secret material. */
 final class AwsCredentials {

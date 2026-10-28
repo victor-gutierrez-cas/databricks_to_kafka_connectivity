@@ -5,7 +5,7 @@
 # MAGIC Executors can't read a UC service credential, and on UC compute the JVM can't read `/Volumes`, so:
 # MAGIC 1. The **driver** uses the service credential: STS `GetWebIdentityToken` -> Entra -> access token.
 # MAGIC 2. The token goes **inline in the Kafka JAAS config** (`token.value`); Spark ships it to the executors, where
-# MAGIC    `com.danskebank.kafka.relay.FileTokenOAuthBearerCallbackHandler` (`confluent-entra-handler-service-credential.jar`)
+# MAGIC    `com.example.kafka.entra.relay.FileTokenOAuthBearerCallbackHandler` (`confluent-entra-handler-service-credential.jar`)
 # MAGIC    hands it to Kafka with `logicalCluster`.
 # MAGIC 3. A token can't change inside a running query, so the stream is **restarted from its checkpoint** with a fresh
 # MAGIC    token before the old one expires.
@@ -81,7 +81,7 @@ def kafka_options(token: str) -> dict:
         "kafka.bootstrap.servers": w["bootstrap"],
         "kafka.security.protocol": "SASL_SSL",
         "kafka.sasl.mechanism": "OAUTHBEARER",
-        "kafka.sasl.login.callback.handler.class": "com.danskebank.kafka.relay.FileTokenOAuthBearerCallbackHandler",
+        "kafka.sasl.login.callback.handler.class": "com.example.kafka.entra.relay.FileTokenOAuthBearerCallbackHandler",
         "kafka.sasl.jaas.config": "kafkashaded.org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule "
                                   "required " + " ".join(opts) + ";",
     }

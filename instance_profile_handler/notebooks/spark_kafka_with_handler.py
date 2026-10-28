@@ -50,7 +50,7 @@ kafka_options = {
     "kafka.bootstrap.servers": w["bootstrap"],
     "kafka.security.protocol": "SASL_SSL",
     "kafka.sasl.mechanism": "OAUTHBEARER",
-    "kafka.sasl.login.callback.handler.class": "com.danskebank.kafka.AwsFederatedEntraOAuthBearerCallbackHandler",
+    "kafka.sasl.login.callback.handler.class": "com.example.kafka.entra.AwsFederatedEntraOAuthBearerCallbackHandler",
     "kafka.sasl.jaas.config": jaas,
 }
 print(jaas)

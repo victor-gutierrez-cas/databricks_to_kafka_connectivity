@@ -1,4 +1,4 @@
-package com.danskebank.kafka;
+package com.example.kafka.entra;
 
 /** Minimal, dependency-free extraction of top-level string and number fields from flat JSON. */
 final class Json {

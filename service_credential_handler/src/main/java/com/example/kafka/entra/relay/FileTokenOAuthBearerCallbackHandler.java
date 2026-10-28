@@ -1,4 +1,4 @@
-package com.danskebank.kafka.relay;
+package com.example.kafka.entra.relay;
 
 // DATABRICKS-SHADED Kafka interfaces (the shaded client rejects vanilla org.apache.kafka.* handlers).
 import kafkashaded.org.apache.kafka.common.security.auth.AuthenticateCallbackHandler;
